@@ -20,7 +20,11 @@ const Company = db.define("company", {
       default: false
   }
 },{
-    timestamps: true
+    timestamps: true,
+    underscored: true
 });
 
 Company.belongsTo(User);
+
+
+module.exports = Company;

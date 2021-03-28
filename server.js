@@ -4,12 +4,21 @@ const path = require('path');
 //Bring in database
 const db = require('./config/database');
 
+
+const app = express();
 //Test database connection
 db.authenticate().then(()=>{
     console.log('Database connected.')
 }).catch((error) =>{
     console.log(error)
 })
+
+//Set up body parser
+app.use(bodyParser.json({extended: true}))
+
+//ROUTES FOR USER
+app.use('/users', require('./routes/user'))
+app.use('/companies', require('./routes/companies'))
 
 
 // Serve static assets in production
