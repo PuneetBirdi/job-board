@@ -17,8 +17,8 @@ db.authenticate().then(()=>{
 app.use(bodyParser.json({extended: true}))
 
 //ROUTES FOR USER
-app.use('/users', require('./routes/user'))
-app.use('/companies', require('./routes/companies'))
+app.use('/api/users', require('./routes/user'))
+app.use('/api/companies', require('./routes/companies'))
 
 
 // Serve static assets in production
