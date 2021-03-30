@@ -41,10 +41,8 @@ router.post("/", (req, res) => {
     userId: user_id,
     description
   })
-    .then(() => {
-      res.json({
-        msg: "Operation complete.",
-      });
+    .then((company) => {
+      res.json(company);
     })
     .catch((error) => {
       console.log(error.errors[0].message);

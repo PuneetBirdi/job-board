@@ -8,18 +8,21 @@ const Op = Sequelize.Op;
 Candidate.sync();
 //Add a gig
 router.post("/", (req, res) => {
-  let { email, password, user_type } = req.body;
+  let { first_name, last_name, resume, profile, skills, photo, public, userId } = req.body;
   const errors = [];
   // Insert into the table
-  User.create({
-    email,
-    password,
-    user_type,
+  Candidate.create({
+    first_name,
+    last_name,
+    resume,
+    profile,
+    skills,
+    photo,
+    public,
+    userId
   })
-    .then(() => {
-      res.json({
-        msg: "Operation complete.",
-      });
+    .then((candidate) => {
+      res.json(candidate);
     })
     .catch((error) => {
       console.log(error.errors[0].message);

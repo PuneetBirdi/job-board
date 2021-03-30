@@ -2,15 +2,16 @@ const Sequelize = require("sequelize");
 const User = require('./User');
 const db = require("../config/database");
 
-Candidate.sync();
 const Candidate = db.define(
   "candidate",
   {
     first_name: {
       type: Sequelize.STRING,
+      allowNull: false
     },
     last_name: {
       type: Sequelize.STRING,
+      allowNull: false
     },
     resume: {
       type: Sequelize.STRING,
@@ -26,7 +27,8 @@ const Candidate = db.define(
     },
     public: {
       type: Sequelize.BOOLEAN,
-      default: false,
+      default: true,
+      allowNull: false
     },
   },
   {
@@ -35,7 +37,7 @@ const Candidate = db.define(
   }
 );
 
-Candidate.belongsTo(User);
+Candidate.belongsTo(User, { foreignKey: { allowNull: false, unique: true } });
 
 
 module.exports = Candidate;

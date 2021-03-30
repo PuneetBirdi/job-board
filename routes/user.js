@@ -26,10 +26,8 @@ router.post("/", (req, res) => {
         email,
         password,
         user_type
-    }).then(()=>{
-    res.json({
-        "msg": "Operation complete."
-        })
+    }).then((user)=>{
+    res.json(user)
     })
     .catch((error) =>{
         console.log(error.errors[0].message)
