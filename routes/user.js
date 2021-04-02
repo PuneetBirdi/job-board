@@ -1,14 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const db = require("../config/database");
-const User = require("../models/User");
+const db = require('../models')
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
-User.sync()
+
 //Add a a user
 router.post("/", (req, res) => {
-    let { email, password, user_type } = req.body;
+    let { email, password, userType } = req.body; 
     const errors = [];
 
     //Validate fields
@@ -18,14 +17,14 @@ router.post("/", (req, res) => {
     if (!password) {
         errors.push({ text: "Please add a password." });
     }
-    if (!user_type) {
+    if (!userType) {
         errors.push({ text: "Please specify account type." });
     }
     // Insert into the table
-    User.create({
+    db.User.create({
         email,
         password,
-        user_type
+        userType
     }).then((user)=>{
     res.json(user)
     })

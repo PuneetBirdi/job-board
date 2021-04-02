@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 //Bring in database
-const db = require('./config/database');
+const db = require('./config/db');
 
 
 const app = express();
@@ -13,7 +13,6 @@ db.authenticate().then(()=>{
     console.log(error)
 })
 
-db.sync({force: true})
 
 //Set up body parser
 app.use(bodyParser.json({extended: true}))
@@ -21,9 +20,9 @@ app.use(bodyParser.json({extended: true}))
 //ROUTES FOR USER
 app.use('/api/users', require('./routes/user'))
 app.use('/api/companies', require('./routes/companies'))
-app.use('/api/candidates', require('./routes/candidates'))
-app.use('/api/postings', require('./routes/postings'))
-app.use('/api/applications', require('./routes/applications'))
+// app.use('/api/candidates', require('./routes/candidates'))
+// app.use('/api/postings', require('./routes/postings'))
+// app.use('/api/applications', require('./routes/applications'))
 
 
 // Serve static assets in production

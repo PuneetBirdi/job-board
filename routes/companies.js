@@ -1,17 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const db = require("../config/database");
-const Company = require("../models/Company");
+const db = require("../models");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
-Company.sync();
 //Add a a company
 router.post("/", (req, res) => {
-  let { name, photo, tags, description, is_hiring, email, user_id } = req.body;
+  let { name, photo, tags, description, isHiring, email, userId } = req.body;
   const errors = [];
-
-  console.log(user_id)
   //Validate fields
   if (!name) {
     errors.push({ text: "Please add a name." });
@@ -28,17 +24,17 @@ router.post("/", (req, res) => {
   if (!email) {
     errors.push({ text: "Please add an email." });
   }
-  if (!user_id) {
+  if (!userId) {
     errors.push({ text: "Please add user id." });
   }
   // Insert into the table
-  Company.create({
+  db.Company.create({
     name,
     photo,
     tags,
     email,
-    is_hiring,
-    userId: user_id,
+    isHiring,
+    userId,
     description
   })
     .then((company) => {
