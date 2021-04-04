@@ -46,11 +46,13 @@ router.post(
         //return json webtoken
         const payload = {
             user: {
-            id: response.userId,
+            id: response.id,
             email: response.email,
             userType: response.userType,
             },
         };
+
+        console.log(payload)
 
       jwt.sign(
         payload,

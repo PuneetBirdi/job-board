@@ -6,18 +6,19 @@ const db = require("../models");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
+db.Profile.sync()
 //Add a a company
 router.post(
   "/",
   auth,
   [
-    check("name", "Name is required.").not().isEmpty(),
-    check("email", "Email is required.").not().isEmpty(),
+    check("firstName", "First name is required.").not().isEmpty(),
+    check("lastName", "Last name is required.").not().isEmpty(),
     check("photo", "Photo is required.").not().isEmpty(),
-    check("tags", "Please include some tags to describe your company.")
+    check("resume", "Please include a link to your resume or portfolio.")
       .not()
       .isEmpty(),
-    check("description", "Please enter a breif description for your company.")
+    check("profile", "Please enter a breif description about yourself.")
       .not()
       .isEmpty(),
   ],
@@ -27,22 +28,23 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    
+
     //destructure the body
-    const { name, email, photo, tags, description } = req.body
+    const { firstName, lastName, resume, profile, skills, photo, public } = req.body;
 
     // Insert into the table
-    db.Company.create({
-      name,
+    db.Profile.create({
+      firstName,
+      lastName,
+      resume,
+      profile,
+      skills,
       photo,
-      tags,
-      email,
-      isHiring: true,
-      userId: req.user.id,
-      description,
+      public,
     })
-      .then((company) => {
-        res.json(company);
+      .then((profile) => {
+        profile.setUser(req.user.id)
+        res.json(profile);
       })
       .catch((error) => {
         console.log(error.errors[0].message);
@@ -52,7 +54,6 @@ router.post(
 
 //Get all companies
 router.get("/", async (req, res) => {
-
   Company.findAll({ raw: true })
     .then((companies) => {
       res.json(companies);

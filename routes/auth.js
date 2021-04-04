@@ -63,7 +63,7 @@ router.post(
       //return json webtoken
       const payload = {
         user: {
-          id: user.userId,
+          id: user.id,
           email: user.email,
           userType: user.userType,
         },

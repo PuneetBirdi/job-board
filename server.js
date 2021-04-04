@@ -13,8 +13,8 @@ app.use(express.json({ extended: false }));
 //ROUTES FOR USER
 app.use('/api/users', require('./routes/user'))
 app.use('/api/auth', require('./routes/auth'))
-app.use('/api/companies', require('./routes/companies'))
-// app.use('/api/candidates', require('./routes/candidates'))
+// app.use('/api/companies', require('./routes/companies'))
+app.use('/api/profile', require('./routes/profile'))
 // app.use('/api/postings', require('./routes/postings'))
 // app.use('/api/applications', require('./routes/applications'))
 
