@@ -2,16 +2,16 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 //Bring in database
-const db = require('./config/db');
+// const db = require('./config/db');
 
 
 const app = express();
 //Test database connection
-db.authenticate().then(()=>{
-    console.log('Database connected.')
-}).catch((error) =>{
-    console.log(error)
-})
+// db.authenticate().then(()=>{
+//     console.log('Database connected.')
+// }).catch((error) =>{
+//     console.log(error)
+// })
 
 
 //Set up body parser
