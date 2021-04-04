@@ -36,14 +36,6 @@ router.post(
     const salt = await bcrypt.genSalt(10);
     password = await bcrypt.hash(password, salt);
 
-    //create json webtoken payload
-    const payload = {
-        user: {
-            email,
-            userType
-        }
-    }
-
     // Insert into the table
     db.User.create({
       email,
@@ -54,6 +46,7 @@ router.post(
         //return json webtoken
         const payload = {
             user: {
+            id: response.userId,
             email: response.email,
             userType: response.userType,
             },
@@ -75,35 +68,5 @@ router.post(
   }
 );
 
-//Get all users
-router.get("/", async (req, res) => {
-  console.log("test");
-
-  User.findAll({ raw: true })
-    .then((users) => {
-      res.json(users);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-});
-
-//Get one user
-router.get("/:email", async (req, res) => {
-  const { email } = req.body;
-
-  User.findAll({
-    raw: true,
-    where: {
-      email: email,
-    },
-  })
-    .then((users) => {
-      res.json(users);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-});
 
 module.exports = router;
