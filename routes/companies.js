@@ -6,6 +6,7 @@ const db = require("../models");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
+db.Company.sync();
 //Add a a company
 router.post(
   "/",
@@ -38,7 +39,7 @@ router.post(
       tags,
       email,
       isHiring: true,
-      userId: req.user.id,
+      UserId: req.user.id,
       description,
     })
       .then((company) => {
@@ -52,10 +53,20 @@ router.post(
 
 //Get all companies
 router.get("/", async (req, res) => {
-
-  Company.findAll({ raw: true })
+  db.Company.findAll()
     .then((companies) => {
       res.json(companies);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
+
+//get current users profile
+router.get("/me", auth, async (req, res) => {
+  db.Company.findOne({where: {UserId: req.user.id}})
+    .then((company) => {
+      res.json(company);
     })
     .catch((error) => {
       console.log(error);
