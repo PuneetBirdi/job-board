@@ -64,9 +64,28 @@ router.post(
         res.json(posting);
       })
       .catch((error) => {
-        res.json(error)
+        res.error(error)
       });
   }
 );
+
+
+//Get all postings
+router.get("/", async (req, res) => {
+  db.Posting.findAll({
+    attributes:['title', 'tags', 'remote', 'createdAt'],
+    where: { active: true },
+    include: [{
+      model: db.Company,
+      attributes: ['name', 'photo']
+    }]
+  })
+    .then((postings) => {
+      res.json(postings);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
 
 module.exports = router;
