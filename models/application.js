@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Application.belongsTo(models.Profile)
+      Application.belongsTo(models.Profile, {as: 'applicant'})
       Application.belongsTo(models.Posting)
     }
   };

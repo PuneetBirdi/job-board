@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Posting.belongsTo(models.Company)
+      Posting.belongsTo(models.Company, {as: 'company'})
       Posting.hasMany(models.Application)
     }
   };

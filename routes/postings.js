@@ -77,7 +77,8 @@ router.get("/", async (req, res) => {
     where: { active: true },
     include: [{
       model: db.Company,
-      attributes: ['name', 'photo']
+      attributes: ['name', 'photo'],
+      as: 'company'
     }]
   })
     .then((postings) => {
