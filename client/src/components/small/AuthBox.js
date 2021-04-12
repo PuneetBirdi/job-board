@@ -1,7 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import { connect } from 'react-redux'
+import { Link, Redirect } from "react-router-dom";
 import { login, loadUser } from '../redux/actions/authActions'
 import PropTypes from 'prop-types'
+//Small UI components
+import FormButton from './FormButton';
 
 const AuthBox = ({
   auth: {isAuthenticated, loading},
@@ -69,12 +72,7 @@ const AuthBox = ({
           {/* <small className="text-red-500 text-xs mb-2 text-center">
             Invalid credentials
           </small> */}
-          <button
-            className="text-sm transition duration-75 ease-in-out focus:bg-blue-600 hover:bg-blue-600 bg-blue-500 py-2 px-2 rounded-md text-white font-bold shadow-md"
-            onClick={loginUser}
-          >
-            Login
-          </button>
+          <FormButton text={'Login'} onClick={loginUser} loading={loading}/>
           <div className="p-2 text-xs text-gray-400 font-semibold flex justify-between">
             <p>Forgot your password?</p>
             <button

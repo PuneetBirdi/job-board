@@ -1,4 +1,6 @@
 import './App.css';
+import React, { Fragment, useEffect } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 //UI Components
 import Header from './components/large/Header'
@@ -9,14 +11,22 @@ import Register from './components/pages/Register'
 import { Provider } from 'react-redux';
 import setAuthToken from './components/utlis/setAuthToken'
 import store from './store';
+import { loadUser } from './components/redux/actions/authActions'
 
-function App() {
+const App = () => {
+    useEffect(() => {
+      store.dispatch(loadUser());
+    }, []);
   return (
     <div>
       <Provider store={store}>
-        <Header/>
-        <Login/>
-        <Register/>
+        <Router>
+          <Switch>
+            <Route exact path="/landing" component={Header} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+          </Switch>
+        </Router>
       </Provider>
     </div>
   );
