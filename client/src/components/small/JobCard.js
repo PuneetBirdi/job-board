@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 
 const JobCard = props => {
     return (
-        <div className="hover:shadow-none transition duration-50 cursor-pointer ease-in-out m-2 hover:bg-gray-100 bg-white flex rounded-lg flex-1 min-w-24 max-h-40 shadow-xl">
-            <div className="h-full w-1/3">
-                <img className='object-fill rounded-l-lg' src="https://placebear.com/200/200" alt=""/>
+        <div className="hover:shadow-none m-4 transition duration-50 cursor-pointer ease-in-out hover:bg-gray-100 bg-white flex rounded-lg flex-1 min-w-24 max-h-36 shadow-xl">
+            <div className="h-full w-1/5 flex justify-center items-center p-3">
+                <img className='object-fill rounded-lg' src="https://placebear.com/100/100" alt=""/>
             </div>
             <div className="flex flex-col p-3">
                 <p className='text-gray-700 font-semibold'>Master of Coin</p>

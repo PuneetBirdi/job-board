@@ -5,7 +5,7 @@ const Register = props => {
     return (
         <section className='h-screen flex flex-col justify-center items-center'>
             <div className='container w-1/3 flex flex-col justify-between items-center'>
-                <div className="w-1/2 self-start ">
+                <div className="w-full self-start ">
                     <h1 className='text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-purple-400 to-purple-600'>Lets Get Started</h1>
                 </div>
                 <form className='rounded-xl shadow-lg bg-gradient-to-b from-purple-400 to-purple-600 justify-self-center w-2/3 p-8 mt-10 mb-24 flex flex-col'>
