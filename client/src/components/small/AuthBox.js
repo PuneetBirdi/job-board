@@ -34,18 +34,17 @@ const AuthBox = ({
     });
   };
 
-
   //Handle login
   const loginUser = (e) => {
     e.preventDefault();
-    login(credentials.email, credentials.password)
+    login(credentials.email, credentials.password);
   };
 
   //handle registration
-  const registerUser = (e) =>{
+  const registerUser = (e) => {
     e.preventDefault();
-    console.log(credentials)
-  }
+    console.log(credentials);
+  };
   //return the appropriate form depending on what is selected, login, or register
   const displayForm = () => {
     if (type === "login") {
@@ -72,7 +71,12 @@ const AuthBox = ({
           {/* <small className="text-red-500 text-xs mb-2 text-center">
             Invalid credentials
           </small> */}
-          <FormButton text={'Login'} onClick={loginUser} loading={loading}/>
+          <button
+            className="text-sm transition duration-75 ease-in-out focus:bg-blue-600 hover:bg-blue-600 bg-blue-500 py-2 px-2 rounded-md text-white font-bold shadow-md"
+            onClick={loginUser}
+          >
+            Login
+          </button>
           <div className="p-2 text-xs text-gray-400 font-semibold flex justify-between">
             <p>Forgot your password?</p>
             <button
@@ -130,6 +134,10 @@ const AuthBox = ({
     }
   };
 
+  //Redirect if logged in
+  if (isAuthenticated) {
+    return <Redirect to="/" />;
+  }
   //Return final form
   return displayForm();
 }

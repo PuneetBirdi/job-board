@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from './components/large/Header'
 import Login from './components/pages/Login'
 import Register from './components/pages/Register'
+import Setup from './components/pages/Setup'
+import Index from './components/pages/Index'
 
 //IMPORT REDUX/STATE MANAGEMENT COMPONENTS
 import { Provider } from 'react-redux';
@@ -25,6 +27,8 @@ const App = () => {
             <Route exact path="/landing" component={Header} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/setup" component={Setup} />
+            <Route exact path="/" component={Index} />
           </Switch>
         </Router>
       </Provider>

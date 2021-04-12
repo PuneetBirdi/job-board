@@ -6,6 +6,9 @@ module.exports = {
       '24': '24rem',
       '128': '128rem',
     },
+    minHeight:{
+      '12': '12rem',
+    },
     extend: {},
   },
   variants: {
