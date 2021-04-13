@@ -8,6 +8,7 @@ import Login from './components/pages/Login'
 import Register from './components/pages/Register'
 import Setup from './components/pages/Setup'
 import Index from './components/pages/Index'
+import Dashboard from './components/pages/Dashboard'
 
 //IMPORT REDUX/STATE MANAGEMENT COMPONENTS
 import { Provider } from 'react-redux';
@@ -20,7 +21,7 @@ const App = () => {
       store.dispatch(loadUser());
     }, []);
   return (
-    <div>
+    <div className='h-screen max-h-screen'>
       <Provider store={store}>
         <Router>
           <Switch>
@@ -29,6 +30,7 @@ const App = () => {
             <Route exact path="/login" component={Login} />
             <Route exact path="/setup" component={Setup} />
             <Route exact path="/" component={Index} />
+            <Route exact path="/dashboard" component={Dashboard} />
           </Switch>
         </Router>
       </Provider>
